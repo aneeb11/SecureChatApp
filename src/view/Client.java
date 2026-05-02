@@ -10,12 +10,12 @@ public class Client {
         System.out.println("Connecting to Server......");
         try
         {
-            Socket Socket = new Socket(SERVER_IP,PORT);
+            Socket socket = new Socket(SERVER_IP,PORT);
             System.out.println("✅ Connected to server!");
             BufferedReader ServerReader = new BufferedReader
-                    (new InputStreamReader(Socket.getInputStream()));
+                    (new InputStreamReader(socket.getInputStream()));
             PrintWriter ServerWriter =
-                    new PrintWriter(Socket.getOutputStream(),true);
+                    new PrintWriter(socket.getOutputStream(),true);
             Scanner keyboard = new Scanner(System.in);
             Thread listenThread = new Thread(() -> {
                 try {

@@ -6,7 +6,7 @@ import java.net.*;
 public class Server {
     public static final int PORT = 5000;
     public static void main(String[] args) {
-        System.out.println("Server Starting on Port : "+ PORT);
+        System.out.println("Server Starting on Port : " + PORT);
         try {
             ServerSocket server_socket = new ServerSocket(PORT);
             System.out.println("✅ Server started! Waiting for client...");
@@ -19,7 +19,7 @@ public class Server {
             while((message = reader.readLine())!=null)
             {
                 System.out.println("Client Says : " + message);
-                writer.println("Server Received : " + message);
+                writer.println(message);
                 if(message.equalsIgnoreCase("exit"))
                 {
                     System.out.println("Client Disconnected.");

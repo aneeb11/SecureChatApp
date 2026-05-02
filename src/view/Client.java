@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Client {
     private static final String SERVER_IP ="localhost";
     private static final int PORT = 5000;
-    public static <exceptionID> void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("Connecting to Server......");
         try
         {
@@ -21,21 +21,24 @@ public class Client {
                 try {
                     String response;
                     while ((response = ServerReader.readLine()) != null) {
-                        System.out.println("\nServer: " + response);
-                        System.out.print("You: ");
+                        System.out.println("\nServer Received : " + response);
+                        System.out.print("You : ");
                     }
                 } catch (IOException e) {
                     System.out.println("Disconnected from server.");
                 }
             });
+            System.out.print("You : ");
             listenThread.start();
-            System.out.println("You : ");
             while (keyboard.hasNextLine())
             {
                 String message = keyboard.nextLine();
                 ServerWriter.println(message);
-                if(message.equalsIgnoreCase("exit"))break;
-                System.out.println("You : ");
+                if(message.equalsIgnoreCase("exit"))
+                {
+                    break;
+                }
+
             }
 
         }

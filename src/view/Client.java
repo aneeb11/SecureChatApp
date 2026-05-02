@@ -1,7 +1,6 @@
-package controller;
+package view;
 import java.io.*;
 import java.net.*;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Client {
@@ -16,13 +15,13 @@ public class Client {
             BufferedReader ServerReader = new BufferedReader
                     (new InputStreamReader(Socket.getInputStream()));
             PrintWriter ServerWriter =
-                    new PrintWriter(Socket.getOutputStream());
+                    new PrintWriter(Socket.getOutputStream(),true);
             Scanner keyboard = new Scanner(System.in);
             Thread listenThread = new Thread(() -> {
                 try {
                     String response;
                     while ((response = ServerReader.readLine()) != null) {
-                        System.out.println("Server: " + response);
+                        System.out.println("\nServer: " + response);
                         System.out.print("You: ");
                     }
                 } catch (IOException e) {

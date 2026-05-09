@@ -4,7 +4,7 @@ import java.net.*;
 
 public class ClientHandler implements Runnable{
     private Socket client_socket;
-    private String client_name;
+    public  String client_name;
     private PrintWriter writer;
     public ClientHandler(Socket client_socket)
     {
@@ -15,13 +15,15 @@ public class ClientHandler implements Runnable{
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(client_socket.getInputStream()));
             writer = new PrintWriter(client_socket.getOutputStream(),true);
-            writer.println("Connected to Server! Enter your name : ");
             client_name=reader.readLine();
-            System.out.println("✅ " + client_name + " joined the chat!");
+            System.out.println("DEBUG: client_name = " + client_name);
+            System.out.println("✅ " + client_name + " joined the chat!");;
+            broadcast("✅ " + client_name + " joined the chat!");
             String message;
             while ((message= reader.readLine())!=null) {
-                broadcast(client_name + " : " + message);
                 System.out.println(client_name + ": " + message);
+                broadcast(client_name + " : " + message);
+                writer.println("You : " + message);
                 if (message.equalsIgnoreCase("exit")) {
                     System.out.println(client_name + " left the chat. ");
                     break;

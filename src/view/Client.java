@@ -1,4 +1,6 @@
 package view;
+import controller.ClientHandler;
+
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -21,15 +23,17 @@ public class Client {
                 try {
                     String response;
                     while ((response = ServerReader.readLine()) != null) {
-                        System.out.println("\nServer Says : " + response);
-                        System.out.print("You : ");
+                        System.out.println("\r"+response);
                     }
                 } catch (IOException e) {
                     System.out.println("Disconnected from server.");
                 }
             });
-            System.out.print("You : ");
+            System.out.print("Enter your name: ");
+            String name = keyboard.nextLine();
+            ServerWriter.println(name);
             listenThread.start();
+            System.out.println("You : ");
             while (keyboard.hasNextLine())
             {
                 String message = keyboard.nextLine();

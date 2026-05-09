@@ -20,18 +20,6 @@ public class Server {
                 clients.add(handler);
                 Thread thread = new Thread(handler);
                 thread.start();
-                BufferedReader reader = new BufferedReader
-                        (new InputStreamReader(client_socket.getInputStream()));
-                PrintWriter writer = new PrintWriter(client_socket.getOutputStream(), true);
-                String message;
-                while ((message = reader.readLine()) != null) {
-                    System.out.println("Client Says : " + message);
-                    writer.println(message);
-                    if (message.equalsIgnoreCase("exit")) {
-                        System.out.println("Client Disconnected.");
-                        break;
-                    }
-                }
             }
         }catch (IOException e) {
             System.out.println("Error : " +e.getMessage());

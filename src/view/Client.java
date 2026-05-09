@@ -21,7 +21,7 @@ public class Client {
                 try {
                     String response;
                     while ((response = ServerReader.readLine()) != null) {
-                        System.out.println("\nServer Received : " + response);
+                        System.out.println("\nServer Says : " + response);
                         System.out.print("You : ");
                     }
                 } catch (IOException e) {

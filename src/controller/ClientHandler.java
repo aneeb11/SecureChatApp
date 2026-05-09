@@ -19,21 +19,31 @@ public class ClientHandler implements Runnable{
             client_name=reader.readLine();
             System.out.println("✅ " + client_name + " joined the chat!");
             String message;
-            while ((message= reader.readLine())!=null)
-            {
-                broadcast(client_name+" : "+ message);
-                System.out.println(client_name+ ": "+ message);
-                if (message.equalsIgnoreCase("exit"))
-                {
-                    System.out.println(client_name+" left the chat. ");
+            while ((message= reader.readLine())!=null) {
+                broadcast(client_name + " : " + message);
+                System.out.println(client_name + ": " + message);
+                if (message.equalsIgnoreCase("exit")) {
+                    System.out.println(client_name + " left the chat. ");
                     break;
                 }
             }
+
 
         }
         catch (IOException e)
         {
             System.out.println("❌ Error : "+e.getMessage());
+        }
+        finally {
+            Server.clients.remove(this);
+        }
+        try{
+            client_socket.close();
+            System.out.println(client_name+" removed from chat.");
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error while closing socket : "+e.getMessage());
         }
     }
     public void broadcast(String message)

@@ -23,7 +23,7 @@ public class Client {
                 try {
                     String response;
                     while ((response = ServerReader.readLine()) != null) {
-                        System.out.println("\r"+response);
+                        System.out.print("\r" + response + "\nYou: ");
                     }
                 } catch (IOException e) {
                     System.out.println("Disconnected from server.");
@@ -33,7 +33,7 @@ public class Client {
             String name = keyboard.nextLine();
             ServerWriter.println(name);
             listenThread.start();
-            System.out.println("You : ");
+            System.out.print("You : ");
             while (keyboard.hasNextLine())
             {
                 String message = keyboard.nextLine();
@@ -42,6 +42,7 @@ public class Client {
                 {
                     break;
                 }
+                System.out.print("You: ");
 
             }
 

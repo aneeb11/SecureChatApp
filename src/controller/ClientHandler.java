@@ -23,7 +23,6 @@ public class ClientHandler implements Runnable{
             while ((message= reader.readLine())!=null) {
                 System.out.println(client_name + ": " + message);
                 broadcast(client_name + " : " + message);
-                writer.println("You : " + message);
                 if (message.equalsIgnoreCase("exit")) {
                     System.out.println(client_name + " left the chat. ");
                     break;

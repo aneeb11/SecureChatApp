@@ -21,6 +21,7 @@ public class ClientHandler implements Runnable{
             String message;
             while ((message= reader.readLine())!=null)
             {
+                broadcast(client_name+" : "+ message);
                 System.out.println(client_name+ ": "+ message);
                 if (message.equalsIgnoreCase("exit"))
                 {
